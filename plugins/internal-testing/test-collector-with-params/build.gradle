@@ -1,0 +1,25 @@
+group 'com.freeletics.pullrequestcommentor.collector'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'kotlin'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+
+shadowJar {
+    baseName = 'test-collector-with-params'
+    classifier = null
+    version = null
+}
+
+
+dependencies {
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    compileOnly project(":plugins:collector-plugin")
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}

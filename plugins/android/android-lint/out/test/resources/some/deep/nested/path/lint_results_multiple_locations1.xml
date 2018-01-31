@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="4" by="lint 3.0.1">
+
+    <issue
+            id="DuplicateIncludedIds"
+            severity="Error"
+            message="Duplicate id @+id/foo"
+            category="Correctness"
+            priority="6"
+            summary="Duplicate ids across layouts combined with include tags"
+            explanation="It&apos;s okay for two independent layouts to use the same ids."
+            errorLine1="            &lt;include layout=&quot;@layout/view_buy_coach_first_wo&quot;/>"
+            errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+                file="/Users/ci/some-app/src/main/res/layout/foo1.xml"
+                line="22"
+                column="13"/>
+        <location
+                file="/Users/ci/some-app/src/main/res/layout/foo2.xml"
+                line="46"
+                column="9"/>
+
+    </issue>
+
+
+    <issue
+            id="DuplicateIncludedIds"
+            severity="Error"
+            message="Some message"
+            category="Correctness"
+            priority="6"
+            summary="Duplicate ids across layouts combined with include tags">
+        <location
+                file="/Users/ci/some-app/src/main/res/layout/fragment_buy_coach_subscription.xml"
+                line="22"
+                column="13"/>
+    </issue>
+</issues>

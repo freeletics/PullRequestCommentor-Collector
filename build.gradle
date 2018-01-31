@@ -1,0 +1,33 @@
+buildscript {
+
+// define all versions --> TODO clean that up
+    ext.kotlin_version = '1.2.21'
+    ext.tikxml = "0.8.13"
+    ext.jackson = "2.9.4"
+    ext.spek = "1.1.5"
+    ext.kluent = "1.33"
+    ext.rxJava = "2.1.9"
+    ext.junit = "4.12"
+
+
+
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.2'
+    }
+}
+
+
+allprojects {
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven { url "https://dl.bintray.com/markusamshove/maven" }
+    }
+}
