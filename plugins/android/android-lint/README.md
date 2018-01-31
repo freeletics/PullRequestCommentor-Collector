@@ -14,7 +14,7 @@ plugins:
         - 'Warnings' # Servity level. See params section
         - '/Users/ci/workspace/some-app/' # The path prefix that should be removed from lint location for a given issue
         - '/Users/ci/workspace/some-app/build' # The path to the directory where scanning should start
-        -  ['*/build/lint-result.xml', '*/other/dir/*/build/lint-result.xml']  # Regex to match for lint results files.
+        -  ['*/build/lint-result.xml', '*/other/dir/*/build/lint-result.xml']  # Glob (similar to regex) to define where to look up
 ```
 
 ## Parameters
@@ -29,6 +29,5 @@ removed like this: `/Users/Hannes/workspace/freeletics-android/`
 - The third parameter specifies the starting directory where you would like to start searching for files that match 
 the [regex](https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html) or 
 [global](https://docs.oracle.com/javase/7/docs/api/java/nio/file/FileSystem.html#getPathMatcher(java.lang.String))
-- The last parameter is a list of [regex](https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html) or 
-[global](https://docs.oracle.com/javase/7/docs/api/java/nio/file/FileSystem.html#getPathMatcher(java.lang.String)) that
+- The last parameter is a list of [glob](https://en.wikipedia.org/wiki/Glob_(programming)) that
  describe where to find the `lint-report.xml` files that should be read and transformed to comments for the pull-request.

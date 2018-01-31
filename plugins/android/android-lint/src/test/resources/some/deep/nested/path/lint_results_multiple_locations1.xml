@@ -8,9 +8,9 @@
             category="Correctness"
             priority="6"
             summary="Duplicate ids across layouts combined with include tags"
-            explanation="It&apos;s okay for two independent layouts to use the same ids."
-            errorLine1="            &lt;include layout=&quot;@layout/view_buy_coach_first_wo&quot;/>"
-            errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+            explanation="explanation line"
+            errorLine1="errorline1"
+            errorLine2="errorline2">
         <location
                 file="/Users/ci/some-app/src/main/res/layout/foo1.xml"
                 line="22"
@@ -29,10 +29,12 @@
             message="Some message"
             category="Correctness"
             priority="6"
-            summary="Duplicate ids across layouts combined with include tags">
+            summary="Duplicate ids across layouts combined with include tags"
+            explanation="explanation line"
+            errorLine1="errorline1">
         <location
-                file="/Users/ci/some-app/src/main/res/layout/fragment_buy_coach_subscription.xml"
-                line="22"
-                column="13"/>
+                file="/Users/ci/some-app/src/main/res/layout/foo3.xml"
+                line="1"
+                column="1"/>
     </issue>
 </issues>

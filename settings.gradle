@@ -11,4 +11,6 @@ include 'utils:glob'
 findProject(':utils:glob')?.name = 'glob'
 include 'utils:filefinder'
 findProject(':utils:filefinder')?.name = 'filefinder'
+include 'utils:htmlescape'
+findProject(':utils:htmlescape')?.name = 'htmlescape'
 

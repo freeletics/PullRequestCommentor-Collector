@@ -2,11 +2,11 @@ package com.freeletcis.pullrequestcommentor.collecltor.android.lint
 
 import com.freeletcis.pullrequestcommentor.collecltor.android.lint.model.AndroidLintIssue
 import com.freeletcis.pullrequestcommentor.collecltor.android.lint.model.AndroidLintReport
+import com.freeletcis.pullrequestcommentor.collector.utils.htmlescape.HtmlEscape
 import com.freeletics.pullrequestcommentor.collector.CollectorPlugin
 import com.freeletics.pullrequestcommentor.collector.Comment
 import com.freeletics.pullrequestcommentor.collector.FileLineComment
 import com.freeletics.pullrequestcommentor.collector.PluginResult
-import com.freeletics.pullrequestcommentor.collector.android.lint.utils.StringUtils
 import com.freeletics.pullrequestcommentor.collector.utils.filefinder.FileFinder
 import com.tickaroo.tikxml.TikXml
 import io.reactivex.Single
@@ -93,18 +93,28 @@ class AndroidLintPlugin(
             val filePath = location.file.removePrefix(basePathToRemoveFromLocation)
             val builder = StringBuilder(message)
 
-            explanation?.also {
+            if (explanation != null && explanation.isNotEmpty()) {
                 builder.append("\n\n")
-                builder.append(it)
+                builder.append(explanation)
             }
 
-            errorLine1?.also {
-                builder.append("\n")
-                builder.append(it)
-            }
-            errorLine2?.also {
-                builder.append("\n")
-                builder.append(it)
+
+            val hasErrorline1 = errorLine1 != null && errorLine1.isNotEmpty()
+            val hasErrorline2 = errorLine2 != null && errorLine2.isNotEmpty()
+
+            if (hasErrorline1 || hasErrorline2) {
+                builder.append("\n\n```")
+
+                if (hasErrorline1) {
+                    builder.append("\n")
+                    builder.append(errorLine1)
+                }
+                if (errorLine2 != null && errorLine2.isNotEmpty()) {
+                    builder.append("\n")
+                    builder.append(errorLine2)
+                }
+
+                builder.append("\n```")
             }
 
             FileLineComment(
@@ -116,6 +126,6 @@ class AndroidLintPlugin(
     }
 
 
-    private fun String.unescapeHtml() = StringUtils.unescapeHtml3(this)
+    private fun String.unescapeHtml() = HtmlEscape.unescapeHtml3(this)
 }
 

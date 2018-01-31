@@ -21,7 +21,7 @@ class FileFinder private constructor(
 ) : SimpleFileVisitor<Path>() {
 
 
-    private var matchingFiles = ArrayList<Path>()
+    private val matchingFiles = ArrayList<Path>()
 
     init {
         if (matcher.isEmpty()) {
@@ -37,7 +37,6 @@ class FileFinder private constructor(
     private fun find(file: Path) {
         if (matchesPath(file)) {
             matchingFiles.add(file)
-            println(matchingFiles)
         }
     }
 
@@ -48,7 +47,6 @@ class FileFinder private constructor(
     private fun matchesPath(name: Path) = matcher.firstOrNull { matcher ->
         val pathStr = name.toString()
         val matches = pathStr.matches(matcher)
-        println("$pathStr $matcher $matches")
         matches
     } != null
 

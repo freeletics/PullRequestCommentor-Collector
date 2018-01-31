@@ -4,19 +4,19 @@
     <issue
             id="DuplicateIncludedIds"
             severity="Error"
-            message="Locations 2"
+            message="Other issue"
             category="Correctness"
             priority="6"
-            summary="Duplicate ids across layouts combined with include tags"
-            explanation="It&apos;s okay for two independent layouts to use the same ids."
-            errorLine1="            &lt;include layout=&quot;@layout/view_buy_coach_first_wo&quot;/>"
-            errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+            summary="ijabsdjkbakjsbd"
+            explanation="An explanation"
+            errorLine1=""
+            errorLine2="">
         <location
-                file="/Users/ci/some-app/src/main/res/layout/foo1.xml"
+                file="/Users/ci/some-app/src/main/res/layout/bar1.xml"
                 line="22"
                 column="13"/>
         <location
-                file="/Users/ci/some-app/src/main/res/layout/foo2.xml"
+                file="/Users/ci/some-app/src/main/res/layout/bar2.xml"
                 line="46"
                 column="9"/>
 
@@ -26,13 +26,13 @@
     <issue
             id="DuplicateIncludedIds"
             severity="Error"
-            message="Some message"
+            message="Another message"
             category="Correctness"
             priority="6"
             summary="Duplicate ids across layouts combined with include tags">
         <location
-                file="/Users/ci/some-app/src/main/res/layout/fragment_buy_coach_subscription.xml"
-                line="22"
+                file="/Users/ci/some-app/src/main/res/layout/bar3.xml"
+                line="13"
                 column="13"/>
     </issue>
 </issues>
