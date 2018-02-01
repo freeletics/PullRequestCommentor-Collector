@@ -77,11 +77,7 @@ object ServityTest : Spek({
 
                 val comments = plugin.getComments()
                 val expected = PluginResult.ErrorComments(listOf(issueWithErrorServity, issueWithWarningServity, issueWithInformationServity))
-
-
-                println(comments)
-                println("---")
-                println(expected)
+                
                 comments shouldEqual expected
             }
         }
