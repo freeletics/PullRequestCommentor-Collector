@@ -1,7 +1,6 @@
 package com.freeletcis.pullrequestcommentor.collecltor.android.lint
 
-import com.freeletcis.pullrequestcommentor.collecltor.android.lint.model.AndroidLintIssue
-import com.freeletcis.pullrequestcommentor.collecltor.android.lint.model.AndroidLintReport
+import com.freeletcis.pullrequestcommentor.collecltor.android.lint.model.*
 import com.freeletcis.pullrequestcommentor.collector.utils.htmlescape.HtmlEscape
 import com.freeletics.pullrequestcommentor.collector.CollectorPlugin
 import com.freeletics.pullrequestcommentor.collector.Comment
@@ -42,6 +41,9 @@ class AndroidLintPlugin(
     override fun getComments(): PluginResult {
         val tikxml = TikXml.Builder()
                 .exceptionOnUnreadXml(false)
+                .addTypeAdapter(AndroidLintIssue::class.java, `AndroidLintIssue$$TypeAdapter`())
+                .addTypeAdapter(AndroidLintLocation::class.java, `AndroidLintLocation$$TypeAdapter`())
+                .addTypeAdapter(AndroidLintReport::class.java, `AndroidLintReport$$TypeAdapter`())
                 .build()
 
         val filesSingles = FileFinder.find(startingDirectoryToScan, lintResultFileMatchers).map {
@@ -64,9 +66,13 @@ class AndroidLintPlugin(
             tikxml.read(fileSource, AndroidLintReport::class.java)
         }
 
-        report.issues
-                .filter { it.severity.toServityInt() <= filterServityBelow }
-                .flatMap(this::toFileLineComments)
+        if (report.issues != null) {
+            report.issues
+                    .filter { it.severity.toServityInt() <= filterServityBelow }
+                    .flatMap(this::toFileLineComments)
+        } else {
+            emptyList()
+        }
     }.subscribeOn(Schedulers.io())
 
 

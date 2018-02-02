@@ -17,7 +17,8 @@ import java.nio.file.attribute.BasicFileAttributes
  */
 class FileFinder private constructor(
         startingDir: Path,
-        val matcher: List<Regex>
+        private val matcher: List<Regex>,
+        private val debug : Boolean = false
 ) : SimpleFileVisitor<Path>() {
 
 
@@ -35,7 +36,11 @@ class FileFinder private constructor(
     // Compares the glob patterns against
     // the file or directory name.
     private fun find(file: Path) {
-        if (matchesPath(file)) {
+        val matches = matchesPath(file)
+        if (debug){
+            println("$file matches $matches")
+        }
+        if (matches) {
             matchingFiles.add(file)
         }
     }

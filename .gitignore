@@ -159,3 +159,5 @@ modules.xml
 
 
 # End of https://www.gitignore.io/api/intellij,intellij+all,intellij+iml
+
+.DS_Store

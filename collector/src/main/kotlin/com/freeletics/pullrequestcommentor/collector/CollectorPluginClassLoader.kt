@@ -1,22 +1,10 @@
 package com.freeletics.pullrequestcommentor.collector
 
 import com.freeletics.pullrequestcommentor.collector.model.PluginToLoad
-import jdk.nashorn.internal.objects.NativeArray.forEach
 import java.io.File
-import java.io.FileInputStream
-import java.io.InputStream
-import java.lang.ClassLoader.getSystemClassLoader
-import java.net.JarURLConnection
-import java.net.URL
 import java.net.URLClassLoader
-import java.util.ArrayList
 import java.util.concurrent.ConcurrentHashMap
 import java.util.jar.JarFile
-import java.util.zip.ZipEntry
-import java.util.zip.ZipInputStream
-import kotlin.collections.HashMap
-import kotlin.collections.firstOrNull
-import kotlin.collections.getOrPut
 
 
 /**
@@ -62,7 +50,7 @@ class CollectorPluginClassLoader {
         var collectorPlugin: Class<CollectorPlugin>? = null
 
         jarStream.entries().asSequence()
-                .filter { !it.isDirectory && it.name.endsWith(".class") && !it.name.contains('$') }
+                .filter { !it.isDirectory && it.name.endsWith(".class") }
                 .forEach { entry ->
                     // This ZipEntry represents a class. Now, what class does it represent?
                     val className = entry.name.replace('/', '.').removeSuffix(".class") // including ".class"

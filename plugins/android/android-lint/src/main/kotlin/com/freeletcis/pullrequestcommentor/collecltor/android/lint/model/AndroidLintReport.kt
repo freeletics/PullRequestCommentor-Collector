@@ -5,5 +5,5 @@ import com.tickaroo.tikxml.annotation.Xml
 
 @Xml
 data class AndroidLintReport (
-        @Element val issues : List<AndroidLintIssue>
+        @Element val issues : List<AndroidLintIssue>?
 )
