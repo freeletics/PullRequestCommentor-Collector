@@ -15,4 +15,6 @@ include 'utils:htmlescape'
 findProject(':utils:htmlescape')?.name = 'htmlescape'
 include 'plugins:kotlin:klint'
 findProject(':plugins:kotlin:klint')?.name = 'klint'
+include 'plugins:java:findbugs'
+findProject(':plugins:java:findbugs')?.name = 'findbugs'
 
