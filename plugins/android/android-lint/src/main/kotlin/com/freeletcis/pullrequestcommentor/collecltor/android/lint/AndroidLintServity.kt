@@ -5,6 +5,10 @@ package com.freeletcis.pullrequestcommentor.collecltor.android.lint
  */
 enum class AndroidLintServity {
     /**
+     * It's a fatal error
+     */
+    Fatal,
+    /**
      * Only report Errors as comments
      */
     Error,

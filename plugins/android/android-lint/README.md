@@ -9,9 +9,9 @@ To add this plugin to the collector add the following configuration to collector
 
 ```yaml
 plugins:
-    - jar: path/to/android-lint-plugin.jar
+    - jar: 'path/to/android-lint-plugin.jar'
       params:
-        - 'Warnings' # Servity level. See params section
+        - 'Error' # Servity level. See params section
         - '/Users/ci/workspace/some-app/' # The path prefix that should be removed from lint location for a given issue
         - '/Users/ci/workspace/some-app/build' # The path to the directory where scanning should start
         -  ['*/build/lint-result.xml', '*/other/dir/*/build/lint-result.xml']  # Glob (similar to regex) to define where to look up

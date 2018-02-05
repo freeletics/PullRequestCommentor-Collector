@@ -80,10 +80,11 @@ class AndroidLintPlugin(
      * Used to check which level we should filter
      */
     private fun String.toServityInt() = when (this) {
-        "Error" -> 1
-        "Warning" -> 2
-        "Information" -> 3
-        else -> 4 // Should never be the case
+        "Fatal" -> 1
+        "Error" -> 2
+        "Warning" -> 3
+        "Information" -> 4
+        else -> 5 // Should never be the case
     }
 
     /**
