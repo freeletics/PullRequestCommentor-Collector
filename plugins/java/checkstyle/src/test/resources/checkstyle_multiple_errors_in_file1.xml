@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<checkstyle version="4.3">
+    <file name="foo/app/src/main/java/com/example/Example.kt">
+        <error line="56" column="1" severity="error"
+               message="Class &apos;FooClass&apos; with &apos;14&apos; functions detected. Allowed maximum amount of functions inside classes is set to &apos;10&apos;"
+               source="detekt.TooManyFunctions"/>
+        <error line="98" column="18" severity="error"
+               message="Too generic"
+               source="detekt.TooGenericExceptionCaught"/>
+    </file>
+</checkstyle>

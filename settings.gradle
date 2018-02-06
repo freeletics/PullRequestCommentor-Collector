@@ -13,6 +13,6 @@ include 'utils:filefinder'
 findProject(':utils:filefinder')?.name = 'filefinder'
 include 'utils:htmlescape'
 findProject(':utils:htmlescape')?.name = 'htmlescape'
-include 'plugins:kotlin:klint'
-findProject(':plugins:kotlin:klint')?.name = 'klint'
+include 'plugins:java:checkstyle'
+findProject(':plugins:java:checkstyle')?.name = 'checkstyle'
 

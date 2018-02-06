@@ -18,7 +18,7 @@ import java.nio.file.attribute.BasicFileAttributes
 class FileFinder private constructor(
         startingDir: Path,
         private val matcher: List<Regex>,
-        private val debug : Boolean = false
+        private val debug: Boolean = false
 ) : SimpleFileVisitor<Path>() {
 
 
@@ -29,6 +29,10 @@ class FileFinder private constructor(
             throw IllegalArgumentException("The list of matchers (globs / regex) must not be empty")
         }
 
+        if (debug) {
+            println("Regex's to search files:")
+            matcher.forEachIndexed { i, regex -> println("${i + 1}.   $regex") }
+        }
         Files.walkFileTree(startingDir, this)
     }
 
@@ -37,8 +41,8 @@ class FileFinder private constructor(
     // the file or directory name.
     private fun find(file: Path) {
         val matches = matchesPath(file)
-        if (debug){
-            println("$file matches $matches")
+        if (debug) {
+            println("Matches $matches - File $file (absolute ${file.toAbsolutePath()})")
         }
         if (matches) {
             matchingFiles.add(file)
@@ -81,11 +85,13 @@ class FileFinder private constructor(
          *
          * @param startingDir Where the search for files matching the given path should start
          * @param globs The glob definition that must match
+         * @param debug true to log the paths / files that are scanned. Default values is false.
          */
-        fun find(startingDir: Path, globs: List<String>): List<Path> {
+        fun find(startingDir: Path, globs: List<String>, debug: Boolean = false): List<Path> {
             val finder = FileFinder(
                     startingDir = startingDir,
-                    matcher = globs.map(Glob::convertGlobToRegex)
+                    matcher = globs.map(Glob::convertGlobToRegex),
+                    debug = debug
             )
 
             return finder.matchingFiles

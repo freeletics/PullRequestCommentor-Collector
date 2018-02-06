@@ -1,0 +1,46 @@
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'org.junit.platform.gradle.plugin'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+junitPlatform {
+    filters {
+        engines {
+            include 'spek'
+        }
+    }
+}
+
+
+shadowJar {
+    baseName = 'checkstyle-plugin'
+    classifier = null
+    version = null
+}
+
+dependencies {
+
+    implementation project(":plugins:collector-plugin")
+    implementation project(":utils:filefinder")
+    implementation project(":utils:htmlescape")
+
+    compileOnly "com.tickaroo.tikxml:annotation:$tikxml"
+    kapt "com.tickaroo.tikxml:processor:$tikxml"
+
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    compileOnly "io.reactivex.rxjava2:rxjava:$rxJava"
+
+    testImplementation "org.jetbrains.spek:spek-api:$spek"
+    testRuntime "org.jetbrains.spek:spek-junit-platform-engine:$spek"
+    testImplementation "org.amshove.kluent:kluent:$kluent"
+    testImplementation "com.tickaroo.tikxml:core:$tikxml"
+    testImplementation "io.reactivex.rxjava2:rxjava:$rxJava"
+
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}

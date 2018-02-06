@@ -1,7 +1,7 @@
-package com.freeletics.pullrequestcommentor.collector.android.lint
+package com.freeletics.pullrequestcomment.collector.checkstyle
 
-import com.freeletcis.pullrequestcommentor.collecltor.android.lint.AndroidLintPlugin
 import com.freeletics.pullrequestcommentor.collector.PluginResult
+import com.freeletics.pullrequestcommentor.collector.checkstyle.CheckstyleLintPlugin
 import org.amshove.kluent.shouldEqual
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.given
@@ -9,13 +9,13 @@ import org.jetbrains.spek.api.dsl.it
 
 object EmptyResultTest : Spek({
 
-    given("an lint file containing no errors") {
+    given("a checkstyle file with no errors"){
+        it ("should create an empty comments file"){
 
-        it("creates no comments") {
-            val plugin = AndroidLintPlugin(
-                    servityStr = "Error",
+            val plugin = CheckstyleLintPlugin(
+                    severityStr = "error",
                     basePathToRemoveFromLocation = "/Users/foo",
-                    lintResultFileMatchers = listOf("*/lint-results-empty.xml"),
+                    lintResultFileMatchers = listOf("*lint-results-empty.xml"),
                     startingDirectoryToScanString = "src/test/resources/"
             )
 
