@@ -36,10 +36,10 @@ plugins:  # A list of plugins
                     - 'foo/build/errorprone-results.xml'   # Parameter 1 for error-prone plugin
                     - 'bar/build/errorprone-results.xml'   # Parameter 2 for error-prone plugin
 
-    - jar: 'path/to/klint.jar' # add klint (kotlin lint) plugin (runs in parallel with example-plugin)
+    - jar: 'path/to/checkstyle.jar' # add checkstyle  plugin (runs in parallel with example-plugin)
       params: 
-            - 'foo/build/klint-results.xml'   # Parameter 1 for klint plugin
-            - 'bar/build/klint-results.xml'   # Parameter 2 for klint plugin
+            - 'foo/build/ktlint.xml'   # Parameter 1 for klint plugin
+            - 'bar/build/ktlint.xml'   # Parameter 2 for klint plugin
 ```
 
 The example shown above demonstates how a `config.yml` file could look like.
@@ -92,9 +92,12 @@ Per default, no plugin is enabled. You always have enable a plugin explicitly in
 Plugins are basically just `.jar` files.
 
 We provide the following plugins:
- - Android Lint
- - Findbugs
- - Junit Test Results
+ - [Android Lint](https://github.com/freeletics/PullRequestCommentor-Collector/tree/master/plugins/android/android-lint)
+ - [Checkstyle](https://github.com/freeletics/PullRequestCommentor-Collector/tree/master/plugins/java/checkstyle)
+    - [ktlint](https://ktlint.github.io) by using checkstyle reporter option
+    - [detekt](https://github.com/arturbosch/detekt) by using checkstyle reporter option
+    - [SwiftLint](https://github.com/realm/SwiftLint) by using checkstyle reporter option
+    - [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) by using checkstyle reporter option
  
  
  ## Write your own Plugin

@@ -1,7 +1,7 @@
 # Checkstyle
 This collector plugin collects reports from [checkstyle](http://checkstyle.sourceforge.net).
-Please note that there are also some other code quality tools like [ktlint](https://ktlint.github.io) and [detekt](https://github.com/arturbosch/detekt)
-that actually generate report files in checkstyle format. Hence those tools are also supported out of the box by applying this plugin.
+Please note that there are also some other code quality tools such as [ktlint](https://ktlint.github.io), [detekt](https://github.com/arturbosch/detekt) or [SwiftLint](https://github.com/realm/SwiftLint)
+that actually generate report files in checkstyle xml format. Hence those tools are also supported out of the box by applying this plugin.
 
 # Download
 TODO
