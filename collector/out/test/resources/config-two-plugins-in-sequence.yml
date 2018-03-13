@@ -1,9 +1,0 @@
-output: 'build/comments.xml'
-plugins:
-    - jar: 'src/test/resources/test-collector-with-params.jar'
-      params:
-        - 1
-        - "A string"
-        - true
-        - 2.0
-    - jar: 'src/test/resources/test-collector-without-params.jar'
