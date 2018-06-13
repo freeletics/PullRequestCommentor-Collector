@@ -103,3 +103,7 @@ We provide the following plugins:
  ## Write your own Plugin
  
 If you want to write your own plugin, please check [this section](TODO).
+
+## Build it manually
+Build the collector manually with `./gradle shadowJar`. 
+Single jar containing all dependencies can be found at `collector/build/lib/reportcollector.jar`

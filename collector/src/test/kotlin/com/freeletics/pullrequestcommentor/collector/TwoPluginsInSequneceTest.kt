@@ -3,11 +3,12 @@ package com.freeletics.pullrequestcommentor.collector
 import com.freeletics.pullrequestcommentor.collector.model.xml.XmlComments
 import com.freeletics.pullrequestcommentor.collector.model.xml.XmlFileLineComment
 import com.freeletics.pullrequestcommentor.collector.model.xml.XmlSimpleComment
-import com.freeletics.pullrequestcommentor.collector.utils.*
-import com.tickaroo.tikxml.TikXml
+import com.freeletics.pullrequestcommentor.collector.utils.StringOutputStream
+import com.freeletics.pullrequestcommentor.collector.utils.shouldBeEmpty
+import com.freeletics.pullrequestcommentor.collector.utils.shouldEqualLine
+import com.freeletics.pullrequestcommentor.collector.utils.writtenXml
 import io.reactivex.schedulers.Schedulers
 import org.amshove.kluent.shouldBeEqualTo
-import org.amshove.kluent.shouldEqual
 import org.amshove.kluent.shouldEqualTo
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.given
@@ -196,6 +197,42 @@ object TwoPluginsInSequneceTest : Spek({
             }
 
 
+            on("both plugins returns exactly the same error and and success comments") {
+
+                val comments = PluginResult.ErrorComments(
+                        listOf(
+                                FileLineComment(filePath = "foo/bar.txt", lineNumber = 1, commentText = "This is an error comment"),
+                                SimpleComment("Success Comment")
+                        )
+                )
+
+                TestCollectorWithParams.result = comments
+                TestCollectorWithoutParams.result = comments
+
+                it("writes a comments.xml file containing only distinct comments: 1 success comment and 1 error comment rather than 4 comments") {
+
+                    start(args = arrayOf("-f", "src/test/resources/config-two-plugins-in-sequence.yml"),
+                            outputStream = outputStream,
+                            errorStream = errorStream,
+                            scheduler = Schedulers.single())
+
+                    // Check if reading parameters work as expected
+                    TestCollectorWithParams.aBoolean shouldEqualTo true
+                    TestCollectorWithParams.aDouble shouldEqualTo 2.0
+                    TestCollectorWithParams.aString shouldBeEqualTo "A string"
+                    TestCollectorWithParams.anInt shouldEqualTo 1
+
+                    errorStream.shouldBeEmpty()
+                    outputStream shouldEqualLine "Successfully written $resultPath containing 2 comments"
+
+                    writtenXml(resultPath) shouldEqual XmlComments(listOf(
+                            XmlSimpleComment("Success Comment"),
+                            XmlFileLineComment(filePath = "foo/bar.txt",
+                                    lineNumber = 1,
+                                    comment = "This is an error comment")
+                    ))
+                }
+            }
         }
     }
 

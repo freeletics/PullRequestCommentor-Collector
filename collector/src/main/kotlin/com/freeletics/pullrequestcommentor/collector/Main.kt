@@ -179,7 +179,11 @@ private fun PluginToLoad.toPluginResultObservable(collectorPluginInstantiator: C
 /**
  * Writes the xml file for the list of plugins
  */
-private fun writeXml(file: File, groupSuccessMessagesToOneComment: Boolean, pluginResults: List<PluginResult>): List<Output> {
+private fun writeXml(
+        file: File,
+        groupSuccessMessagesToOneComment: Boolean,
+        pluginResults: List<PluginResult>
+): List<Output> {
     val tikXml = TikXml.Builder()
             .writeDefaultXmlDeclaration(true)
             .build()
@@ -194,6 +198,8 @@ private fun writeXml(file: File, groupSuccessMessagesToOneComment: Boolean, plug
                 is PluginResult.ErrorComments -> it.errorComments
             }
         }.map(Comment::toXmlComment)
+                .distinct()
+
     }
 
     Okio.buffer(Okio.sink(file)).use { fileSink ->
